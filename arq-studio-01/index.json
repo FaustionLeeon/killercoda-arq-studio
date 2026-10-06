@@ -1,0 +1,48 @@
+{
+  "title": "ARQ Studio 01 — Tu primer día como administrador",
+  "description": "Aprende a crear y gestionar usuarios y sus perfiles en Ubuntu trabajando como administrador de sistemas de ARQ Studio.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Misión 1 — Mañana empieza Pablo",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+      {
+        "title": "Misión 2 — El primer proyecto",
+        "text": "step2/text.md",
+        "verify": "step2/verify.sh"
+      },
+      {
+        "title": "Misión 3 — Llega Laura",
+        "text": "step3/text.md",
+        "verify": "step3/verify.sh"
+      },
+      {
+        "title": "Misión 4 — Personaliza a Pablo",
+        "text": "step4/text.md",
+        "verify": "step4/verify.sh"
+      },
+      {
+        "title": "Misión 5 — Miguel deja la empresa",
+        "text": "step5/text.md",
+        "verify": "step5/verify.sh"
+      },
+      {
+        "title": "Misión final — Sara",
+        "text": "step6/text.md",
+        "verify": "step6/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
+
