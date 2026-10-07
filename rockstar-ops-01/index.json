@@ -1,0 +1,17 @@
+{
+  "title": "ROCKSTAR OPS 01 — Operación GTA VI",
+  "description": "Prepara usuarios, espacios personales y perfiles en un servidor Ubuntu para un estudio ficticio de videojuegos. Actividad educativa no oficial.",
+  "details": {
+    "intro": { "text": "intro.md" },
+    "steps": [
+      { "title": "Misión 1 — Jason llega al equipo", "text": "step1/text.md", "verify": "step1/verify.sh" },
+      { "title": "Misión 2 — Preparar el proyecto GTA VI", "text": "step2/text.md", "verify": "step2/verify.sh" },
+      { "title": "Misión 3 — Lucia se incorpora", "text": "step3/text.md", "verify": "step3/verify.sh" },
+      { "title": "Misión 4 — Atajo de desarrollo", "text": "step4/text.md", "verify": "step4/verify.sh" },
+      { "title": "Misión 5 — Un desarrollador deja el proyecto", "text": "step5/text.md", "verify": "step5/verify.sh" },
+      { "title": "Misión 6 — Reto final: Michael", "text": "step6/text.md", "verify": "step6/verify.sh" }
+    ],
+    "finish": { "text": "finish.md" }
+  },
+  "backend": { "imageid": "ubuntu" }
+}
