@@ -1,0 +1,62 @@
+{
+  "title": "AIRMUR 01 — Primer turno en Sistemas",
+  "description": "Tu primer día administrando usuarios, perfiles y grupos Linux en un aeropuerto ficticio de formación.",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "1. ¿Dónde demonios estoy?",
+        "text": "step1/text.md",
+        "verify": "step1/verify.sh"
+      },
+      {
+        "title": "2. Prepara el centro de operaciones",
+        "text": "step2/text.md",
+        "verify": "step2/verify.sh"
+      },
+      {
+        "title": "3. Llegan los trabajadores",
+        "text": "step3/text.md",
+        "verify": "step3/verify.sh"
+      },
+      {
+        "title": "4. Problemas con las credenciales",
+        "text": "step4/text.md",
+        "verify": "step4/verify.sh"
+      },
+      {
+        "title": "5. ¿De quién es este archivo?",
+        "text": "step5/text.md",
+        "verify": "step5/verify.sh"
+      },
+      {
+        "title": "6. El entorno de Lucas",
+        "text": "step6/text.md",
+        "verify": "step6/verify.sh"
+      },
+      {
+        "title": "7. Las pandillas del aeropuerto",
+        "text": "step7/text.md",
+        "verify": "step7/verify.sh"
+      },
+      {
+        "title": "8. Los que tienen superpoderes",
+        "text": "step8/text.md",
+        "verify": "step8/verify.sh"
+      },
+      {
+        "title": "9. Misión final",
+        "text": "step9/text.md",
+        "verify": "step9/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
