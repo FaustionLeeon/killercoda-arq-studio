@@ -25,15 +25,12 @@ Conceptos esenciales:
 Ejecuta:
 
 ```bash
-samba-tool domain provision \
-  --domain=AIRMUR \
-  --realm=AD.AIRMUR.TEST \
-  --server-role=dc \
-  --use-rfc2307 \
-  --dns-backend=SAMBA_INTERNAL
+samba-tool domain provision --domain=AIRMUR --realm=AD.AIRMUR.TEST --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL
 ```{{exec}}
 
 Cuando pida la contraseña de Administrator, usa una contraseña exclusivamente de laboratorio, por ejemplo `Airmur-Admin-2026!`. No reutilices una contraseña real.
+
+> No pulses **CHECK** todavía. Aprovisionar crea el dominio, pero aún debes completar los pasos 2, 3 y 4 de esta misión.
 
 ## 2. Configura el DNS del propio DC
 
@@ -71,4 +68,4 @@ Introduce la contraseña del laboratorio y después comprueba:
 
 `klist`{{exec}}
 
-Pulsa **CHECK** cuando DNS, Kerberos y el dominio respondan.
+Pulsa **CHECK** solamente cuando DNS, Kerberos y el dominio respondan. La comprobación puede tardar unos segundos y siempre mostrará qué está correcto y qué falta.
