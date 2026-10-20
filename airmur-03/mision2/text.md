@@ -69,3 +69,9 @@ Introduce la contraseña del laboratorio y después comprueba:
 `klist`{{exec}}
 
 Pulsa **CHECK** solamente cuando DNS, Kerberos y el dominio respondan. La comprobación puede tardar unos segundos y siempre mostrará qué está correcto y qué falta.
+
+Si el botón vuelve a ponerse naranja, consulta el informe detallado con:
+
+`cat /tmp/airmur-mision2.log`{{exec}}
+
+El informe marcará con `✅` lo que funciona y con `❌` el requisito concreto que todavía falta. El verificador busca también el ticket Kerberos creado por `kinit` aunque Killercoda ejecute **CHECK** en un proceso separado de tu terminal.
