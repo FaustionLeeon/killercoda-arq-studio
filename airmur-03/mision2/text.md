@@ -25,10 +25,14 @@ Conceptos esenciales:
 Ejecuta:
 
 ```bash
-samba-tool domain provision --domain=AIRMUR --realm=AD.AIRMUR.TEST --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL
+samba-tool domain provision --domain=AIRMUR --realm=AD.AIRMUR.TEST --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --adminpass='Airmur-Admin-2026!'
 ```{{exec}}
 
-Cuando pida la contraseña de Administrator, usa una contraseña exclusivamente de laboratorio, por ejemplo `Airmur-Admin-2026!`. No reutilices una contraseña real.
+La opción `--adminpass` asigna expresamente la contraseña de laboratorio a `Administrator`. En Ubuntu 24.04, si se omite, el aprovisionador puede generar una contraseña aleatoria en lugar de preguntarla. No reutilices esta contraseña fuera de este laboratorio efímero.
+
+Si ya aprovisionaste el dominio con el comando antiguo y `kinit` rechaza la contraseña, no borres el dominio. Repárala con:
+
+`samba-tool user setpassword Administrator --newpassword='Airmur-Admin-2026!'`{{exec}}
 
 > No pulses **CHECK** todavía. Aprovisionar crea el dominio, pero aún debes completar los pasos 2, 3 y 4 de esta misión.
 
@@ -64,7 +68,7 @@ systemctl restart samba-ad-dc
 
 `kinit Administrator@AD.AIRMUR.TEST`{{exec}}
 
-Introduce la contraseña del laboratorio y después comprueba:
+Introduce `Airmur-Admin-2026!` y después comprueba:
 
 `klist`{{exec}}
 

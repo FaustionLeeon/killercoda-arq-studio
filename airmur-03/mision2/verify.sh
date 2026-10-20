@@ -8,7 +8,10 @@ source /usr/local/lib/airmur03-verify-common.sh
 exec > >(tee /tmp/airmur-mision2.log) 2>&1
 
 role_dc() { timeout 5s testparm -s --parameter-name='server role' 2>/dev/null | grep -Fqi 'active directory domain controller'; }
-domain_name() { timeout 8s samba-tool domain info 127.0.0.1 2>/dev/null | grep -Fqi 'Domain : ad.airmur.test'; }
+domain_name() {
+  timeout 8s samba-tool domain info 127.0.0.1 2>/dev/null |
+    grep -Eqi '^[[:space:]]*Domain[[:space:]]*:[[:space:]]*ad\.airmur\.test[[:space:]]*$'
+}
 dns_ldap() { dig +time=2 +tries=1 +short @127.0.0.1 SRV _ldap._tcp.ad.airmur.test | grep -Fqi 'airmur-dc.ad.airmur.test'; }
 dns_kerberos() { dig +time=2 +tries=1 +short @127.0.0.1 SRV _kerberos._udp.ad.airmur.test | grep -Fqi 'airmur-dc.ad.airmur.test'; }
 kerberos_ticket() {
