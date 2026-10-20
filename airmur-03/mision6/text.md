@@ -32,7 +32,9 @@ Introduce `Airmur-Lab-2026!`.
 
 Prueba el uso del ticket frente a Samba:
 
-`smbclient --use-kerberos=required -L airmur-dc.ad.airmur.test`{{exec}}
+`smbclient --use-kerberos=required --no-pass -L airmur-dc.ad.airmur.test`{{exec}}
+
+`--no-pass` impide que `smbclient` pida una contraseña y obliga a demostrar el acceso con el ticket Kerberos ya obtenido.
 
 ## 2. Redacta el plan de movilidad
 
@@ -55,3 +57,5 @@ Sustituye y elimina todas las líneas `COMPLETA-AQUI`. La plantilla sin redactar
 El DC no debe utilizarse como servidor general de archivos en el diseño recomendado.
 
 > Killercoda demuestra Kerberos real en el DC y evalúa el plan. VirtualBox probará el inicio de sesión y el mismo almacenamiento desde dos clientes.
+
+Si el botón vuelve a ponerse naranja, consulta el informe con `cat /tmp/airmur-mision6.log`.
