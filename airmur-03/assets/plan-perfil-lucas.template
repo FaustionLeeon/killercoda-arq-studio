@@ -1,0 +1,32 @@
+# Plan de movilidad de Lucas
+
+Completa todas las decisiones. Conserva exactamente las cuatro etiquetas de control.
+
+AUTENTICACION=KERBEROS
+DATOS_CENTRALIZADOS=SMB
+PERMISOS=PRIVADOS
+PERFIL_MOVIL_COMPLETO=NO
+
+## Identidad y autenticación
+
+COMPLETA-AQUI: explica dónde existe la cuenta de Lucas, quién comprueba su contraseña y qué prueba técnica demuestra la autenticación.
+
+## Ubicación de los datos
+
+COMPLETA-AQUI: propón un servidor miembro y una ruta para los datos personales. El DC debe permanecer dedicado al directorio.
+
+## Permisos
+
+COMPLETA-AQUI: explica cómo impedirás que otros trabajadores lean los datos de Lucas y qué administradores conservarán acceso de recuperación.
+
+## Inicio de sesión en PC01 y PC02
+
+COMPLETA-AQUI: describe qué ocurre al iniciar sesión desde cada cliente y cómo se monta el directorio central.
+
+## Contingencia y desconexión
+
+COMPLETA-AQUI: explica copias de seguridad, indisponibilidad de red, conflictos y recuperación.
+
+## Límite de la solución
+
+COMPLETA-AQUI: explica por qué autenticación centralizada, HOME compartido y perfil móvil completo no son equivalentes.

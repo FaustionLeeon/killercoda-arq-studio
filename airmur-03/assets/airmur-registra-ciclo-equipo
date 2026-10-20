@@ -1,0 +1,23 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+name=${1:-}
+[[ $name =~ ^AIRMUR-PC0[12]$ ]] || {
+  echo 'Uso: airmur-registra-ciclo-equipo AIRMUR-PC01|AIRMUR-PC02' >&2
+  exit 2
+}
+
+output=$(samba-tool computer show "$name")
+uac=$(sed -n 's/^[[:space:]]*userAccountControl: //p' <<<"$output" | head -n1)
+[[ $uac =~ ^[0-9]+$ ]] || {
+  echo 'No se pudo leer userAccountControl.' >&2
+  exit 1
+}
+if (( (uac & 2) == 0 )); then
+  echo "$name todavía está habilitada. Deshabilítala antes de registrar la evidencia." >&2
+  exit 1
+fi
+install -d -m 0700 /var/lib/airmur03
+printf '%s disabled_uac=%s at=%s\n' "$name" "$uac" "$(date -u +%FT%TZ)" > "/var/lib/airmur03/${name}.ciclo"
+chmod 0600 "/var/lib/airmur03/${name}.ciclo"
+echo "Evidencia registrada: $name estuvo deshabilitada. Ahora vuelve a habilitarla."

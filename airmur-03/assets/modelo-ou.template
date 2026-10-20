@@ -1,0 +1,19 @@
+# Justificación del modelo administrativo AIRMUR
+
+Completa la justificación después de crear las OU y mover los objetos.
+
+## OU frente a grupo
+
+COMPLETA-AQUI: explica por qué una OU organiza y permite delegar/aplicar políticas, mientras que un grupo reúne identidades para conceder acceso.
+
+## Estructura elegida
+
+COMPLETA-AQUI: describe `OU=AIRMUR`, sus contenedores de Usuarios, Equipos y Grupos, y las cuatro OU departamentales.
+
+## Ubicación de objetos
+
+COMPLETA-AQUI: justifica dónde quedan Lucas, Marta, Elena, Raúl, Nora, AIRMUR-PC01, AIRMUR-PC02 y los grupos departamentales.
+
+## Administración futura
+
+COMPLETA-AQUI: explica cómo permitiría delegar tareas o aplicar políticas sin mezclar identidad, organización y permisos.

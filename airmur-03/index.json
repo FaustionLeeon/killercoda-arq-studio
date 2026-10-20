@@ -1,0 +1,89 @@
+{
+  "title": "AIRMUR 03 — EL AEROPUERTO NECESITA UN CEREBRO",
+  "description": "Instala y administra un Samba Active Directory Domain Controller real. Siete misiones sobre dominio, DNS, Kerberos, usuarios, equipos, OU y movilidad.",
+  "details": {
+    "intro": {
+      "title": "El aeropuerto necesita un cerebro",
+      "text": "intro/text.md",
+      "background": "intro/background.sh",
+      "foreground": "intro/foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Misión 1 — El servidor central",
+        "text": "mision1/text.md",
+        "verify": "mision1/verify.sh"
+      },
+      {
+        "title": "Misión 2 — Nace el dominio AIRMUR",
+        "text": "mision2/text.md",
+        "verify": "mision2/verify.sh"
+      },
+      {
+        "title": "Misión 3 — Los trabajadores ya no viven en cada ordenador",
+        "text": "mision3/text.md",
+        "verify": "mision3/verify.sh"
+      },
+      {
+        "title": "Misión 4 — Los ordenadores también tienen identidad",
+        "text": "mision4/text.md",
+        "verify": "mision4/verify.sh"
+      },
+      {
+        "title": "Misión 5 — Cada departamento en su sitio",
+        "text": "mision5/text.md",
+        "verify": "mision5/verify.sh"
+      },
+      {
+        "title": "Misión 6 — Lucas cambia de ordenador",
+        "text": "mision6/text.md",
+        "verify": "mision6/verify.sh"
+      },
+      {
+        "title": "Misión 7 — La auditoría del director",
+        "text": "mision7/text.md",
+        "verify": "mision7/verify.sh"
+      }
+    ],
+    "finish": {
+      "title": "El aeropuerto ya tiene cerebro",
+      "text": "finish/text.md",
+      "foreground": "finish/foreground.sh"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "verify-common.sh",
+          "target": "/opt/airmur03-assets",
+          "chmod": "+x"
+        },
+        {
+          "file": "airmur-puntuacion",
+          "target": "/opt/airmur03-assets",
+          "chmod": "+x"
+        },
+        {
+          "file": "airmur-auditoria",
+          "target": "/opt/airmur03-assets",
+          "chmod": "+x"
+        },
+        {
+          "file": "airmur-registra-ciclo-equipo",
+          "target": "/opt/airmur03-assets",
+          "chmod": "+x"
+        },
+        {
+          "file": "plan-perfil-lucas.template",
+          "target": "/opt/airmur03-assets"
+        },
+        {
+          "file": "modelo-ou.template",
+          "target": "/opt/airmur03-assets"
+        }
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}

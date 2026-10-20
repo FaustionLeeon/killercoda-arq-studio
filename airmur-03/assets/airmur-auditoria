@@ -1,0 +1,79 @@
+#!/bin/bash
+set -u
+
+failed=0
+test_item() {
+  local label=$1
+  shift
+  if "$@" >/dev/null 2>&1; then
+    echo "✅ $label"
+  else
+    echo "❌ $label"
+    failed=$((failed + 1))
+  fi
+}
+
+has_user() { samba-tool user show "$1" >/dev/null 2>&1; }
+has_group() { samba-tool group show "$1" >/dev/null 2>&1; }
+has_computer() { samba-tool computer show "$1" >/dev/null 2>&1; }
+has_ou() { samba-tool ou list --full-dn 2>/dev/null | grep -Fqi "$1"; }
+member_of() { samba-tool group listmembers "$1" 2>/dev/null | grep -Fxiq "$2"; }
+dn_contains() { samba-tool "$1" show "$2" 2>/dev/null | grep -Fqi "dn: $3"; }
+dns_ldap() { dig +short @127.0.0.1 SRV _ldap._tcp.ad.airmur.test | grep -Fqi 'airmur-dc.ad.airmur.test'; }
+dns_kerberos() { dig +short @127.0.0.1 SRV _kerberos._udp.ad.airmur.test | grep -Fqi 'airmur-dc.ad.airmur.test'; }
+role_dc() { testparm -s --parameter-name='server role' 2>/dev/null | grep -Fqi 'active directory domain controller'; }
+plan_complete() {
+  local file=/root/airmur03/evidencias/plan-perfil-lucas.md
+  [ -f "$file" ] || return 1
+  grep -Fqi 'AUTENTICACION=KERBEROS' "$file" &&
+  grep -Fqi 'DATOS_CENTRALIZADOS=SMB' "$file" &&
+  grep -Fqi 'PERMISOS=PRIVADOS' "$file" &&
+  grep -Fqi 'PERFIL_MOVIL_COMPLETO=NO' "$file" &&
+  ! grep -Fq 'COMPLETA-AQUI' "$file" &&
+  [ "$(wc -w < "$file")" -ge 80 ]
+}
+
+echo '=== AUDITORÍA TÉCNICA AIRMUR 03 ==='
+test_item 'Servicio samba-ad-dc activo' systemctl is-active --quiet samba-ad-dc
+test_item 'Rol Active Directory Domain Controller' role_dc
+test_item 'Dominio responde' samba-tool domain info 127.0.0.1
+test_item 'DNS SRV LDAP responde' dns_ldap
+test_item 'DNS SRV Kerberos responde' dns_kerberos
+for user in lucas marta elena raul nora; do test_item "Usuario $user" has_user "$user"; done
+for group in operaciones mantenimiento administracion sistemas; do test_item "Grupo $group" has_group "$group"; done
+test_item 'Lucas en operaciones' member_of operaciones lucas
+test_item 'Marta en administracion' member_of administracion marta
+test_item 'Elena en mantenimiento' member_of mantenimiento elena
+test_item 'Raúl en sistemas' member_of sistemas raul
+test_item 'Nora en sistemas' member_of sistemas nora
+for computer in AIRMUR-PC01 AIRMUR-PC02; do test_item "Cuenta de equipo $computer" has_computer "$computer"; done
+for ou in \
+  'OU=AIRMUR,' \
+  'OU=Usuarios,OU=AIRMUR,' \
+  'OU=Equipos,OU=AIRMUR,' \
+  'OU=Grupos,OU=AIRMUR,' \
+  'OU=Operaciones,OU=Usuarios,OU=AIRMUR,' \
+  'OU=Mantenimiento,OU=Usuarios,OU=AIRMUR,' \
+  'OU=Administracion,OU=Usuarios,OU=AIRMUR,' \
+  'OU=Sistemas,OU=Usuarios,OU=AIRMUR,'; do test_item "OU $ou" has_ou "$ou"; done
+test_item 'Lucas ubicado en Operaciones' dn_contains user lucas 'CN=lucas,OU=Operaciones,OU=Usuarios,OU=AIRMUR,'
+test_item 'Marta ubicada en Administración' dn_contains user marta 'CN=marta,OU=Administracion,OU=Usuarios,OU=AIRMUR,'
+test_item 'Elena ubicada en Mantenimiento' dn_contains user elena 'CN=elena,OU=Mantenimiento,OU=Usuarios,OU=AIRMUR,'
+test_item 'Raúl ubicado en Sistemas' dn_contains user raul 'CN=raul,OU=Sistemas,OU=Usuarios,OU=AIRMUR,'
+test_item 'Nora ubicada en Sistemas' dn_contains user nora 'CN=nora,OU=Sistemas,OU=Usuarios,OU=AIRMUR,'
+for computer in AIRMUR-PC01 AIRMUR-PC02; do
+  test_item "$computer ubicado en Equipos" dn_contains computer "$computer" "CN=$computer,OU=Equipos,OU=AIRMUR,"
+done
+for group in operaciones mantenimiento administracion sistemas; do
+  test_item "Grupo $group ubicado en Grupos" dn_contains group "$group" "CN=$group,OU=Grupos,OU=AIRMUR,"
+done
+test_item 'Base del directorio coherente' samba-tool dbcheck --cross-ncs
+test_item 'Plan de movilidad razonado' plan_complete
+
+echo
+if [ "$failed" -eq 0 ]; then
+  echo 'AUDITORÍA: CONFORME'
+  exit 0
+fi
+echo "AUDITORÍA: NO CONFORME ($failed fallo(s))"
+exit 1

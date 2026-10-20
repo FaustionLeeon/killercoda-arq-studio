@@ -1,0 +1,35 @@
+#!/bin/bash
+set -u
+
+state=/var/lib/airmur03
+declare -A names=(
+  [1]='Servidor central'
+  [2]='Dominio, DNS y Kerberos'
+  [3]='Usuarios y grupos'
+  [4]='Cuentas de equipo'
+  [5]='Modelo de OU'
+  [6]='Movilidad planificada'
+  [7]='Auditoría final'
+)
+declare -A maximum=( [1]=10 [2]=15 [3]=15 [4]=15 [5]=15 [6]=15 [7]=15 )
+
+total=0
+echo '=== PUNTUACIÓN AIRMUR 03 ==='
+for mission in 1 2 3 4 5 6 7; do
+  file="$state/mision${mission}.aprobada"
+  points=0
+  if [ -f "$file" ]; then
+    value=$(tr -cd '0-9' < "$file")
+    if [ "$value" = "${maximum[$mission]}" ]; then
+      points=$value
+    fi
+  fi
+  total=$((total + points))
+  printf '%s Misión %d — %-28s %d.%d / %d.%d\n' \
+    "$([ "$points" -gt 0 ] && echo '✅' || echo '⬜')" \
+    "$mission" "${names[$mission]}" \
+    $((points / 10)) $((points % 10)) \
+    $((maximum[$mission] / 10)) $((maximum[$mission] % 10))
+done
+echo
+printf 'NOTA FINAL: %d.%d / 10.0\n' $((total / 10)) $((total % 10))
