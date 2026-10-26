@@ -38,7 +38,9 @@ for pair in lucas:air_ops marta:air_ops elena:air_security raul:air_security nor
   fi
 done
 
-install -d -m 0750 /etc/airmur04 /root/airmur04/evidencias /var/log/airmur04 /srv/airmur
+install -d -m 0750 /etc/airmur04 /root/airmur04/evidencias /var/log/airmur04
+install -d -m 0711 /srv/airmur
+chmod 0711 /srv/airmur
 for resource in operaciones seguridad intercambio evidencias; do
   [[ -d /srv/airmur/$resource ]] || install -d -m 0755 "/srv/airmur/$resource"
 done
