@@ -1,0 +1,30 @@
+{
+  "title": "AIRMUR 04 — EL AEROPUERTO TIENE SECRETOS",
+  "description": "RA4: ACL, recursos SMB, impresión, Cockpit Files y pruebas de acceso sin reconstruir el dominio",
+  "difficulty": "intermediate",
+  "time": "60",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {"title": "1. La baliza fantasma", "text": "mision1/text.md", "verify": "mision1/verify.sh"},
+      {"title": "2. Los pasillos prohibidos", "text": "mision2/text.md", "verify": "mision2/verify.sh"},
+      {"title": "3. El manifiesto compartido", "text": "mision3/text.md", "verify": "mision3/verify.sh"},
+      {"title": "4. Cinco identidades, una verdad", "text": "mision4/text.md", "verify": "mision4/verify.sh"},
+      {"title": "5. La tarjeta que nunca se imprimió", "text": "mision5/text.md", "verify": "mision5/verify.sh"},
+      {"title": "6. La puerta de cristal", "text": "mision6/text.md", "verify": "mision6/verify.sh"},
+      {"title": "7. Cierre de pista", "text": "mision7/text.md", "verify": "mision7/verify.sh"}
+    ],
+    "finish": {"text": "finish.md"},
+    "assets": {
+      "host01": [
+        {"file": "*", "target": "/opt/airmur04", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {"imageid": "ubuntu"}
+}
+

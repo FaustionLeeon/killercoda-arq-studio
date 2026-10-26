@@ -6,6 +6,8 @@ Escenarios prácticos de **Sistemas Operativos en Red (SMIR2)**.
 
 - `arq-studio-01`: **ARQ Studio 01 — Tu primer día como administrador**
 - `airmur-01`: **AIRMUR 01 — Primer turno en Sistemas**
+- `airmur-03`: **AIRMUR 03 — El aeropuerto necesita un cerebro**
+- `airmur-04`: **AIRMUR 04 — El aeropuerto tiene secretos**
 - `rockstar-ops-01`: **ROCKSTAR OPS 01 — Operación GTA VI** (actividad
   educativa no oficial)
 
