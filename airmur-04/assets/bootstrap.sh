@@ -12,8 +12,13 @@ if ((${#missing[@]})); then
   apt-get install -y --no-install-recommends "${missing[@]}"
 fi
 if apt-cache show cockpit-files >/dev/null 2>&1; then
-  dpkg-query -W -f='${Status}' cockpit-files 2>/dev/null | grep -q 'install ok installed' || apt-get install -y --no-install-recommends cockpit-files
-  printf 'available\n' >/var/lib/airmur04-cockpit-files.status
+  . /etc/os-release
+  if dpkg-query -W -f='${Status}' cockpit-files 2>/dev/null | grep -q 'install ok installed' || \
+     apt-get install -y --no-install-recommends -t "${VERSION_CODENAME}-backports" cockpit cockpit-files; then
+    printf 'available\n' >/var/lib/airmur04-cockpit-files.status
+  else
+    printf 'unavailable\n' >/var/lib/airmur04-cockpit-files.status
+  fi
 else
   printf 'unavailable\n' >/var/lib/airmur04-cockpit-files.status
 fi
