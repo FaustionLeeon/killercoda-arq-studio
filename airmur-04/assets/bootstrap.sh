@@ -50,8 +50,17 @@ if [[ ! -e /etc/airmur04/smb-standalone.conf.staged ]]; then
 fi
 
 install -d -m 0755 /etc/cockpit
+cockpit_origin=''
+if [[ -r /etc/killercoda/host ]]; then
+  cockpit_origin=$(sed 's/PORT/9090/g' /etc/killercoda/host)
+fi
 if [[ ! -e /etc/cockpit/cockpit.conf ]]; then
-  printf '[WebService]\nAllowUnencrypted = true\n' >/etc/cockpit/cockpit.conf
+  {
+    printf '[WebService]\nAllowUnencrypted = true\n'
+    [[ -n $cockpit_origin ]] && printf 'Origins = %s\n' "$cockpit_origin"
+  } >/etc/cockpit/cockpit.conf
+elif [[ -n $cockpit_origin ]] && ! grep -q '^Origins[[:space:]]*=' /etc/cockpit/cockpit.conf; then
+  sed -i "/^\[WebService\]/a Origins = $cockpit_origin" /etc/cockpit/cockpit.conf
 fi
 systemctl enable --now smbd.service cups.service cockpit.socket
 touch /var/lib/airmur04-prepared
