@@ -1,0 +1,59 @@
+{
+  "title": "UNDEFINED 02 — La contraseña es 123456",
+  "description": "Virtual hosts, autenticación, HTTPS de laboratorio y registros.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh",
+      "foreground": "foreground.sh"
+    },
+    "steps": [
+      {
+        "title": "Inspecciona el desastre",
+        "text": "paso1/text.md",
+        "verify": "paso1/verify.sh"
+      },
+      {
+        "title": "Dos dominios, un mismo servidor",
+        "text": "paso2/text.md",
+        "verify": "paso2/verify.sh"
+      },
+      {
+        "title": "Crea una identidad para el administrador",
+        "text": "paso3/text.md",
+        "verify": "paso3/verify.sh"
+      },
+      {
+        "title": "Crea un certificado de laboratorio",
+        "text": "paso4/text.md",
+        "verify": "paso4/verify.sh"
+      },
+      {
+        "title": "Activa HTTPS y el acceso protegido",
+        "text": "paso5/text.md",
+        "verify": "paso5/verify.sh"
+      },
+      {
+        "title": "Comprueba quién puede entrar",
+        "text": "paso6/text.md",
+        "verify": "paso6/verify.sh"
+      },
+      {
+        "title": "Revisa los registros de seguridad",
+        "text": "paso7/text.md",
+        "verify": "paso7/verify.sh"
+      },
+      {
+        "title": "Redacta el informe de seguridad",
+        "text": "paso8/text.md",
+        "verify": "paso8/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}

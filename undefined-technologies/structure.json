@@ -1,0 +1,16 @@
+{
+  "title": "UNDEFINED TECHNOLOGIES — Despliegue de Aplicaciones Web",
+  "description": "RIVALZ: de localhost a producción. Historia interactiva de DevOps para 2.º DAW. Capítulos ordenados, prácticas Linux y comprobaciones automáticas.",
+  "items": [
+    {
+      "path": "01-pero-en-mi-ordenador-funciona",
+      "title": "Capítulo 1 — ¡Pero en mi ordenador funciona!",
+      "description": "Ubuntu, Nginx, RIVALZ, HTTP, Docker y documentación. Incluye siete viñetas de cómic."
+    },
+    {
+      "path": "02-la-contrasena-es-123456",
+      "title": "Capítulo 2 — La contraseña es 123456",
+      "description": "Virtual hosts, autenticación, TLS de laboratorio y registros de acceso."
+    }
+  ]
+}

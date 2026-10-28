@@ -1,0 +1,53 @@
+{
+  "title": "UNDEFINED 01 — ¡Pero en mi ordenador funciona!",
+  "description": "Publica RIVALZ con Nginx, verifica HTTP y prueba Docker.",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "background.sh"
+    },
+    "steps": [
+      {
+        "title": "La llamada de Ramiro: reconoce la máquina",
+        "text": "paso1/text.md",
+        "verify": "paso1/verify.sh"
+      },
+      {
+        "title": "Instala el servidor web",
+        "text": "paso2/text.md",
+        "verify": "paso2/verify.sh"
+      },
+      {
+        "title": "Encuentra y publica la aplicación RIVALZ",
+        "text": "paso3/text.md",
+        "verify": "paso3/verify.sh"
+      },
+      {
+        "title": "Configura la puerta de entrada",
+        "text": "paso4/text.md",
+        "verify": "paso4/verify.sh"
+      },
+      {
+        "title": "Prueba la web como un visitante",
+        "text": "paso5/text.md",
+        "verify": "paso5/verify.sh"
+      },
+      {
+        "title": "RIVALZ también en un contenedor Docker",
+        "text": "paso6/text.md",
+        "verify": "paso6/verify.sh"
+      },
+      {
+        "title": "Crea el acta de entrega al jefe",
+        "text": "paso7/text.md",
+        "verify": "paso7/verify.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}
